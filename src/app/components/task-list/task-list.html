@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Lista de Tareas (Total: {{ tasks.length }})</h2>
+    <button class="btn btn-primary">
+        + Crear Nueva Tarea
+    </button>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+</div>
+
+<div *ngIf="tasks.length > 0"> 
+    <div *ngFor="let task of tasks" class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ task.title }}</h5>
+            <p class="card-text">{{ task.description }}</p>
+            
+            <span class="badge bg-secondary">
+                {{ task.status }}
+            </span>
+            
+            <small class="text-muted ms-3">Creada: {{ task.createdAt | date:'short' }}</small>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tasks.length === 0 && !errorMessage" class="alert alert-info mt-3">
+    No hay tareas registradas.
+</div>
